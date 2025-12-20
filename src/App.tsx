@@ -1,6 +1,7 @@
 import Layout from "./layout/layout";
 import ThemeToggle from "./components/ThemeToggle";
 import { useTheme } from "./hooks/useTheme";
+import Hero from "./sections/hero/Hero";
 
 function App() {
   const { toggleTheme } = useTheme();
@@ -8,7 +9,7 @@ function App() {
   return (
     <Layout>
       <ThemeToggle toggleTheme={toggleTheme} />
-      <div>App shell ready</div>
+      <Hero />
     </Layout>
   );
 }
