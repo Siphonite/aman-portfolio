@@ -1,14 +1,18 @@
 import SocialLinks from "./SocialLinks";
+import VideoCard from "./VideoCard";
 
 export default function Hero() {
     return (
         <section
             style={{
                 minHeight: "70vh",
-                display: "flex",
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "3rem",
                 alignItems: "center",
             }}
         >
+            {/* Left: Text */}
             <div style={{ maxWidth: "720px" }}>
                 <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>
                     Hi, I’m Aman.
@@ -21,6 +25,11 @@ export default function Hero() {
                 </p>
 
                 <SocialLinks />
+            </div>
+
+            {/* Right: Video */}
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <VideoCard />
             </div>
         </section>
     );
