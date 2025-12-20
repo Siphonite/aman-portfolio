@@ -4,33 +4,22 @@ import ContributionGraph from "./ContributionGraph";
 
 export default function Hero() {
     return (
-        <section
-            style={{
-                minHeight: "70vh",
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "3rem",
-                alignItems: "center",
-            }}
-        >
-            {/* Left: Text */}
-            <div style={{ maxWidth: "720px" }}>
-                <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>
-                    Hi, I’m Aman.
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center min-h-[70vh]">
+            <div>
+                <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-8 leading-[0.9]">
+                    Hi, I'm Aman.
                 </h1>
-
-                <p style={{ fontSize: "1.2rem", lineHeight: 1.6 }}>
-                    Former sales and operations professional, now building in tech,
-                    blockchain, and decentralized systems. I focus on bridging business
-                    understanding with technical execution.
+                <p className="text-xl md:text-2xl text-zinc-500 max-w-xl leading-relaxed font-light">
+                    Ex-sales & operations professional. Now building decentralized
+                    systems on Solana. Bridging the gap between business strategy and
+                    technical execution.
                 </p>
 
                 <SocialLinks />
                 <ContributionGraph />
             </div>
 
-            {/* Right: Video */}
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className="flex justify-center lg:justify-end">
                 <VideoCard />
             </div>
         </section>

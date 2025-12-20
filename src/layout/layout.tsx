@@ -1,16 +1,22 @@
+import type { ReactNode } from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 type Props = {
-    children: React.ReactNode;
+    children: ReactNode;
+    isDark: boolean;
 };
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children, isDark }: Props) {
     return (
-        <div style={{ display: "flex" }}>
+        <div
+            className={`min-h-screen ${isDark ? "bg-[#0A0A0A] text-white" : "bg-white text-black"} transition-colors duration-500`}
+        >
             <Navbar />
-            <main style={{ marginLeft: "80px", padding: "24px", width: "100%" }}>
+            <main className="pl-20 max-w-7xl mx-auto px-8 md:px-16 py-24">
                 {children}
             </main>
+            <Footer />
         </div>
     );
 }

@@ -1,51 +1,38 @@
-const WEEKS = 24;
+const WEEKS = 50;
 const DAYS = 7;
 
-function getIntensity(week: number, day: number) {
-    // Simple deterministic pattern (not random)
-    return (week * day) % 5;
+// Generate consistent "random" intensity based on position
+function getIntensity(week: number, day: number): number {
+    // Simple deterministic hash for consistent rendering
+    const hash = (week * 7 + day) * 9301 + 49297;
+    return (hash % 233) / 233;
+}
+
+function getColor(intensity: number): string {
+    if (intensity > 0.8) return "#22d3ee";
+    if (intensity > 0.5) return "#164e63";
+    if (intensity > 0.2) return "#083344";
+    return "#18181b";
 }
 
 export default function ContributionGraph() {
     return (
-        <div style={{ marginTop: "2.5rem" }}>
-            <div
-                style={{
-                    fontSize: "0.7rem",
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    opacity: 0.6,
-                    marginBottom: "0.75rem",
-                }}
-            >
-                Consistency
+        <div className="mt-8">
+            <div className="flex justify-between items-center mb-4">
+                <span className="mono text-[10px] uppercase tracking-widest text-zinc-500">
+                    Pulse / Consistency
+                </span>
             </div>
-
-            <div style={{ display: "flex", gap: "4px" }}>
+            <div className="flex gap-1 overflow-hidden">
                 {Array.from({ length: WEEKS }).map((_, week) => (
-                    <div
-                        key={week}
-                        style={{ display: "flex", flexDirection: "column", gap: "4px" }}
-                    >
+                    <div key={week} className="flex flex-col gap-1">
                         {Array.from({ length: DAYS }).map((_, day) => {
                             const intensity = getIntensity(week, day);
-                            const colors = [
-                                "#1f2933",
-                                "#083344",
-                                "#0e7490",
-                                "#22d3ee",
-                                "#67e8f9",
-                            ];
-
                             return (
                                 <div
                                     key={day}
-                                    style={{
-                                        width: "10px",
-                                        height: "10px",
-                                        borderRadius: "2px",
-                                        backgroundColor: colors[intensity],
-                                    }}
+                                    className="w-3 h-3 rounded-[2px]"
+                                    style={{ backgroundColor: getColor(intensity) }}
                                 />
                             );
                         })}

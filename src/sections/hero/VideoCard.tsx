@@ -1,58 +1,37 @@
 import { useState } from "react";
+import { Play } from "lucide-react";
+import Modal from "../../components/Modal";
 
 export default function VideoCard() {
-    const [open, setOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <>
-            {/* Collapsed card */}
             <div
-                onClick={() => setOpen(true)}
-                style={{
-                    width: "360px",
-                    aspectRatio: "16 / 9",
-                    border: "1px solid #333",
-                    borderRadius: "12px",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}
+                onClick={() => setIsOpen(true)}
+                className="relative aspect-video w-full max-w-md rounded-2xl overflow-hidden cursor-pointer group border border-zinc-800 bg-zinc-900"
             >
-                <span>▶ Introduction Video</span>
-            </div>
-
-            {/* Expanded overlay */}
-            {open && (
-                <div
-                    onClick={() => setOpen(false)}
-                    style={{
-                        position: "fixed",
-                        inset: 0,
-                        background: "rgba(0,0,0,0.8)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        zIndex: 100,
-                    }}
-                >
-                    <div
-                        onClick={(e) => e.stopPropagation()}
-                        style={{
-                            width: "80%",
-                            maxWidth: "960px",
-                            aspectRatio: "16 / 9",
-                            background: "#111",
-                            borderRadius: "16px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                        }}
-                    >
-                        <span>Video goes here</span>
+                <img
+                    src="https://picsum.photos/seed/aman/800/450"
+                    alt="Introduction"
+                    className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Play fill="white" className="text-white ml-1" />
                     </div>
                 </div>
-            )}
+            </div>
+
+            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                <div className="w-full h-full flex items-center justify-center text-zinc-500 mono">
+                    <img
+                        src="https://picsum.photos/seed/aman-video/1920/1080"
+                        alt="Full Video"
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+            </Modal>
         </>
     );
 }

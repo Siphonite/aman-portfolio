@@ -1,25 +1,25 @@
-const LINKS = [
-    { label: "GitHub", url: "https://github.com/Siphonite" },
-    { label: "LinkedIn", url: "https://www.linkedin.com/in/siphonite/" },
-    { label: "X", url: "https://x.com/siphonitee" },
-    { label: "Medium", url: "https://medium.com/@amansinha327" },
-    { label: "Email", url: "mailto:amansinha327@gmail.com" },
-];
+import { SOCIAL_LINKS } from "../../data/social";
 
 export default function SocialLinks() {
     return (
-        <div style={{ marginTop: "2rem", display: "flex", gap: "1.5rem" }}>
-            {LINKS.map((link) => (
-                <a
-                    key={link.label}
-                    href={link.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ textDecoration: "none" }}
-                >
-                    {link.label}
-                </a>
-            ))}
+        <div className="mt-12 flex gap-8">
+            {SOCIAL_LINKS.map((link) => {
+                const Icon = link.icon;
+                return (
+                    <a
+                        key={link.label}
+                        href={link.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={link.label}
+                    >
+                        <Icon
+                            size={24}
+                            className="text-zinc-500 hover:text-white transition-colors cursor-pointer"
+                        />
+                    </a>
+                );
+            })}
         </div>
     );
 }
