@@ -1,16 +1,21 @@
 import { SKILLS } from "../../data/skills";
 
-function SkillItem({ name, variant = "primary" }: { name: string; variant?: "primary" | "secondary" }) {
-    const baseClasses = "text-4xl md:text-6xl font-bold mx-12 transition-colors cursor-default mono uppercase tracking-tighter";
-    const variantClasses = variant === "primary"
-        ? "text-zinc-800 hover:text-zinc-400"
-        : "text-zinc-900 hover:text-zinc-600";
+function SkillItem({
+    name,
+    variant = "primary",
+}: {
+    name: string;
+    variant?: "primary" | "secondary";
+}) {
+    const baseClasses =
+        "text-4xl md:text-6xl font-bold mx-12 transition-colors cursor-default mono uppercase tracking-tighter";
 
-    return (
-        <span className={`${baseClasses} ${variantClasses}`}>
-            {name}
-        </span>
-    );
+    const variantClasses =
+        variant === "primary"
+            ? "text-zinc-800 hover:text-zinc-400"
+            : "text-zinc-900 hover:text-zinc-600";
+
+    return <span className={`${baseClasses} ${variantClasses}`}>{name}</span>;
 }
 
 function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
@@ -18,7 +23,8 @@ function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
 
     return (
         <div
-            className={`flex whitespace-nowrap ${reverse ? "animate-scroll-reverse" : "animate-scroll mb-8"}`}
+            className={`flex whitespace-nowrap ${reverse ? "animate-scroll-reverse" : "animate-scroll mb-8"
+                }`}
         >
             {[...SKILLS, ...SKILLS].map((skill, i) => (
                 <SkillItem key={i} name={skill} variant={variant} />
@@ -29,9 +35,15 @@ function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
 
 export default function SkillsMarquee() {
     return (
-        <section className="py-24 -ml-[calc(5rem+2rem)] -mr-8 md:-ml-[calc(5rem+4rem)] md:-mr-16 overflow-hidden border-y border-zinc-900/50">
-            <MarqueeRow />
-            <MarqueeRow reverse />
+        <section className="py-24 border-y border-zinc-900/50">
+            {/* 
+        We keep the section aligned with the content column.
+        Overflow is handled inside so animation can extend freely.
+      */}
+            <div className="overflow-hidden">
+                <MarqueeRow />
+                <MarqueeRow reverse />
+            </div>
         </section>
     );
 }
