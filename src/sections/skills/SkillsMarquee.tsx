@@ -29,7 +29,7 @@ function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
 
 export default function SkillsMarquee() {
     return (
-        <section className="py-24 -mx-20 overflow-hidden border-y border-zinc-900/50">
+        <section className="py-24 -ml-[calc(5rem+2rem)] -mr-8 md:-ml-[calc(5rem+4rem)] md:-mr-16 overflow-hidden border-y border-zinc-900/50">
             <MarqueeRow />
             <MarqueeRow reverse />
         </section>
