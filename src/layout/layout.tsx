@@ -12,8 +12,8 @@ export default function Layout({ children, isDark }: Props) {
         <div
             className={`min-h-screen ${isDark ? "bg-[#0A0A0A] text-white" : "bg-white text-black"} transition-colors duration-500`}
         >
-            <Navbar />
-            <main className="pl-20 max-w-7xl mx-auto px-8 md:px-16 py-24">
+            <Navbar isDark={isDark} />
+            <main className="max-w-7xl mx-auto pl-24 pr-8 md:pl-28 md:pr-16 py-24">
                 {children}
             </main>
             <Footer />

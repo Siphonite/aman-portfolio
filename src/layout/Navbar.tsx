@@ -14,19 +14,29 @@ const NAV_ITEMS = [
     { icon: <MessageSquare size={20} />, label: "Blogs", active: false },
 ];
 
-export default function Navbar() {
+type NavbarProps = {
+    isDark: boolean;
+};
+
+export default function Navbar({ isDark }: NavbarProps) {
     return (
-        <nav className="fixed left-0 top-0 h-full w-20 flex flex-col items-center py-12 border-r border-zinc-800 bg-[#0A0A0A] z-40">
-            <div className="text-xl font-bold mb-12 mono text-white">AK</div>
-            <div className="flex flex-col gap-10">
+        <nav
+            className={`fixed top-0 h-full w-20 flex flex-col items-center justify-center z-40 transition-colors duration-500 ${isDark ? "bg-[#0A0A0A]" : "bg-white"
+                }`}
+            style={{ left: 'max(0px, calc((100vw - 80rem) / 2 - 1rem))' }}
+        >
+            <div className="flex flex-col gap-[4.5rem]">
                 {NAV_ITEMS.map((item, i) => (
                     <button
                         key={i}
-                        className={`group relative text-zinc-500 hover:text-white transition-colors ${item.active ? "text-white" : ""
+                        className={`group relative transition-colors ${item.active
+                            ? (isDark ? "text-white" : "text-black")
+                            : (isDark ? "text-zinc-500 hover:text-white" : "text-zinc-400 hover:text-black")
                             }`}
                     >
                         {item.icon}
-                        <span className="absolute left-14 opacity-0 group-hover:opacity-100 transition-opacity mono text-xs uppercase tracking-widest whitespace-nowrap bg-zinc-900 px-2 py-1 rounded">
+                        <span className={`absolute left-14 opacity-0 group-hover:opacity-100 transition-opacity mono text-xs uppercase tracking-widest whitespace-nowrap px-2 py-1 rounded ${isDark ? "bg-zinc-900 text-white" : "bg-zinc-100 text-black"
+                            }`}>
                             {item.label}
                         </span>
                     </button>
