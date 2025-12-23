@@ -1,20 +1,60 @@
-import type { Experience } from "../types";
+import type { WorkExperience } from "../types";
 
-export const EXPERIENCES: Experience[] = [
+export const WORK_EXPERIENCES: WorkExperience[] = [
     {
         id: 1,
-        company: "HMD Global / eBay",
-        role: "Ops & Fraud Prevention",
-        period: "2020 - 2024",
-        impact:
-            "Managed complex cross-border transactions and mitigated high-value risk patterns for global clients.",
+        company: "Teleperformance",
+        location: "Jaipur (Remote)",
+        client: "HMD Global",
+        clientLogo: "/logos/hmd_global_logo.jpg",
+        role: "Sales Specialist",
+        period: "September 2024 - October 2025",
+        responsibilities: [
+            "Handled inbound business inquiries from global sellers and provided detailed information on Enterprise Mobility Management, Security Solutions, and IoT Connectivity",
+            "Assessed business needs, facilitated onboarding process for new business clients, and followed up with prospects to ensure smooth client acquisition",
+            "Tracked conversion rates and maintained interaction records to optimize sales performance for business partnerships"
+        ]
     },
     {
         id: 2,
-        company: "Singtel Optus",
-        role: "Customer Success",
-        period: "2019 - 2020",
-        impact:
-            "Engineered retention strategies and managed high-priority enterprise accounts.",
+        company: "TTEC",
+        location: "Ahmedabad (Remote)",
+        client: "eBay Australia",
+        clientLogo: "/logos/ebay_logo.jpg",
+        role: "Fraud Prevention Analyst",
+        period: "May 2023 - April 2024",
+        responsibilities: [
+            "Monitored and assessed seller account activity to identify potential fraud, policy abuse, and high-risk behaviours across the eBay marketplace",
+            "Investigated complex cases involving disputes and seller performance anomalies, applying trust and safety rules to recommend corrective actions",
+            "Analysed seller metrics and transaction patterns using CRM"
+        ]
     },
+    {
+        id: 3,
+        company: "24/7.AI",
+        location: "Bengaluru (On-site)",
+        client: "Optus",
+        clientLogo: "/logos/optus_logo.jpg",
+        role: "Sales Advisor",
+        period: "November 2022 - May 2023",
+        responsibilities: [
+            "Engaged with Australian consumers to upsell mobile and broadband plans, selling new devices and bundled plans to improve customer retention",
+            "Promoted additional services including international roaming and device insurance to drive cross-sales opportunities",
+            "Maintained high conversion rate for sales inquiries and consistently achieved KPIs"
+        ]
+    },
+    {
+        id: 4,
+        company: "Concentrix",
+        location: "Ranchi (On-Site)",
+        client: "MakeMyTrip",
+        clientLogo: "/logos/makemytripcom_logo.jpg",
+        role: "Sales Advisor",
+        period: "February 2022 - October 2022",
+        responsibilities: [
+            "Assisted domestic and international customers in selecting travel packages and upselling premium plans using GDS (Global Distribution System)",
+            "Negotiated reissuance and refunds to maximize company revenue while ensuring customer satisfaction",
+            "Maintained detailed records of customer interactions in CRM system to enhance future sales opportunities"
+        ]
+    }
 ];

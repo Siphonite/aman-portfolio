@@ -19,6 +19,17 @@ export interface Experience {
     impact: string;
 }
 
+export interface WorkExperience {
+    id: number;
+    company: string;
+    location: string;
+    client: string;
+    clientLogo: string;
+    role: string;
+    period: string;
+    responsibilities: string[];
+}
+
 // Using 'any' for icon type to avoid JSX namespace issues with lucide-react components
 export interface SocialLink {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
