@@ -5,20 +5,75 @@ import {
     FileText,
     MessageSquare,
 } from "lucide-react";
+import type { ReactNode } from "react";
 
-const NAV_ITEMS = [
-    { icon: <Home size={20} />, label: "Home", active: true },
-    { icon: <Layers size={20} />, label: "Projects", active: false },
-    { icon: <Briefcase size={20} />, label: "Work", active: false },
-    { icon: <FileText size={20} />, label: "Resume", active: false },
-    { icon: <MessageSquare size={20} />, label: "Blogs", active: false },
-];
+type NavItem = {
+    icon: ReactNode;
+    label: string;
+    action: () => void;
+};
 
 type NavbarProps = {
     isDark: boolean;
+    onNavigate?: (page: "home" | "resume") => void;
+    currentPage?: "home" | "resume";
 };
 
-export default function Navbar({ isDark }: NavbarProps) {
+export default function Navbar({ isDark, onNavigate, currentPage = "home" }: NavbarProps) {
+    const scrollToSection = (sectionId: string) => {
+        if (currentPage !== "home" && onNavigate) {
+            onNavigate("home");
+            // Wait for the home page to load, then scroll
+            setTimeout(() => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                }
+            }, 100);
+        } else {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    };
+
+    const scrollToTop = () => {
+        if (currentPage !== "home" && onNavigate) {
+            onNavigate("home");
+        } else {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    };
+
+    const NAV_ITEMS: NavItem[] = [
+        {
+            icon: <Home size={20} />,
+            label: "Home",
+            action: scrollToTop
+        },
+        {
+            icon: <Layers size={20} />,
+            label: "Projects",
+            action: () => scrollToSection("projects")
+        },
+        {
+            icon: <Briefcase size={20} />,
+            label: "Work",
+            action: () => scrollToSection("experience")
+        },
+        {
+            icon: <FileText size={20} />,
+            label: "Resume",
+            action: () => onNavigate?.("resume")
+        },
+        {
+            icon: <MessageSquare size={20} />,
+            label: "Blogs",
+            action: () => window.open("https://medium.com/@amansinha327", "_blank")
+        },
+    ];
+
     return (
         <nav
             className={`fixed top-0 left-0 h-full w-20 flex flex-col items-center justify-center z-40 transition-colors duration-500 ${isDark ? "bg-[#0A0A0A]" : "bg-white"
@@ -28,9 +83,10 @@ export default function Navbar({ isDark }: NavbarProps) {
                 {NAV_ITEMS.map((item, i) => (
                     <button
                         key={i}
-                        className={`group relative transition-colors ${item.active
-                            ? (isDark ? "text-white" : "text-black")
-                            : (isDark ? "text-zinc-500 hover:text-white" : "text-zinc-400 hover:text-black")
+                        onClick={item.action}
+                        className={`group relative transition-colors ${i === 0 && currentPage === "home"
+                                ? (isDark ? "text-white" : "text-black")
+                                : (isDark ? "text-zinc-500 hover:text-white" : "text-zinc-400 hover:text-black")
                             }`}
                     >
                         {item.icon}
