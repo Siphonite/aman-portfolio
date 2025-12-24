@@ -1,11 +1,8 @@
 import { FileDown } from "lucide-react";
 
-export default function ResumePage() {
-    const handleDownload = () => {
-        // Placeholder - will be replaced with actual resume download
-        alert("Resume download will be available soon!");
-    };
+const RESUME_FILENAME = "AMAN KUMAR - CV 2025.pdf";
 
+export default function ResumePage() {
     return (
         <div className="min-h-screen bg-[#0A0A0A] text-white flex flex-col items-center justify-center px-8">
             <div className="text-center max-w-lg">
@@ -21,8 +18,9 @@ export default function ResumePage() {
                     Click the button below to download my resume and learn more about my professional experience.
                 </p>
 
-                <button
-                    onClick={handleDownload}
+                <a
+                    href={`/${RESUME_FILENAME}`}
+                    download={RESUME_FILENAME}
                     className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 
                              text-white font-semibold rounded-lg text-lg
                              hover:from-cyan-400 hover:to-cyan-500 
@@ -32,7 +30,7 @@ export default function ResumePage() {
                 >
                     <FileDown size={24} />
                     Download Resume
-                </button>
+                </a>
 
                 <div className="mt-12">
                     <a
