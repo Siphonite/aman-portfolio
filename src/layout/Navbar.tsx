@@ -21,9 +21,8 @@ type NavbarProps = {
 export default function Navbar({ isDark }: NavbarProps) {
     return (
         <nav
-            className={`fixed top-0 h-full w-20 flex flex-col items-center justify-center z-40 transition-colors duration-500 ${isDark ? "bg-[#0A0A0A]" : "bg-white"
+            className={`fixed top-0 left-0 h-full w-20 flex flex-col items-center justify-center z-40 transition-colors duration-500 ${isDark ? "bg-[#0A0A0A]" : "bg-white"
                 }`}
-            style={{ left: 'max(0px, calc((100vw - 80rem) / 2 - 1rem))' }}
         >
             <div className="flex flex-col gap-[4.5rem]">
                 {NAV_ITEMS.map((item, i) => (

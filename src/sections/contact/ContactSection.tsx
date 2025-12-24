@@ -56,7 +56,7 @@ export default function ContactSection() {
                             Let's Connect:
                         </p>
                         <a
-                            href="https://calendly.com/your-calendly-link"
+                            href="https://calendly.com/amansinha327/book-a-call"
                             target="_blank"
                             rel="noreferrer"
                             className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500 hover:bg-cyan-400 

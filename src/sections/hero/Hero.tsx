@@ -7,13 +7,11 @@ export default function Hero() {
             {/* Main 2-column grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                 <div>
-                    <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-8 leading-[0.9]">
-                        Hi, I'm Aman.
+                    <h1 className="text-6xl md:text-7xl font-bold tracking-tighter mb-8 leading-[0.9]">
+                        Aman Kumar
                     </h1>
                     <p className="text-xl md:text-2xl text-zinc-500 max-w-xl leading-relaxed font-light">
-                        Ex-sales & operations professional. Now building decentralized
-                        systems on Solana. Bridging the gap between business strategy and
-                        technical execution.
+                        I am a results-driven sales and operations professional with years of experience in global client relations, now learning, building and shipping on-chain projects in tech, blockchain, and Web3.
                     </p>
                     <SocialLinks />
                 </div>
