@@ -119,6 +119,14 @@ export default function MusicPlayer() {
         if (widgetRef.current) widgetRef.current.setVolume(value);
     };
 
+    const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const targetTime = parseInt(e.target.value);
+        setCurrentTime(targetTime);
+        if (widgetRef.current) {
+            widgetRef.current.seekTo(targetTime);
+        }
+    };
+
     const formatTime = (ms: number) => {
         const totalSeconds = Math.floor(ms / 1000);
         const minutes = Math.floor(totalSeconds / 60);
@@ -169,10 +177,31 @@ export default function MusicPlayer() {
 
                     {/* Progress Bar Area */}
                     <div className="flex flex-col gap-1.5">
-                        <div className="h-[2px] w-full bg-white/[0.05] relative cursor-pointer group/progress">
+                        <div className="relative w-full h-3 flex items-center group/progress">
+                            {/* Seek Slider (Overlay) */}
+                            <input
+                                type="range"
+                                min="0"
+                                max={duration}
+                                value={currentTime}
+                                onChange={handleSeek}
+                                className="absolute inset-0 w-full h-full opacity-0 z-30 cursor-pointer"
+                            />
+
+                            {/* Visual Progress Bar */}
+                            <div className="w-full h-[2px] bg-white/[0.05] relative rounded-full overflow-hidden z-20">
+                                <div
+                                    className="h-full bg-[#81f8a0] transition-all duration-100 ease-linear"
+                                    style={{ width: duration > 0 ? `${(currentTime / duration) * 100}%` : '0%' }}
+                                />
+                            </div>
+
+                            {/* Hover Indicator Knob (Optional) */}
                             <div
-                                className="h-full bg-[#81f8a0] transition-all duration-300 relative"
-                                style={{ width: duration > 0 ? `${(currentTime / duration) * 100}%` : '0%' }}
+                                className="absolute h-2 w-2 bg-white rounded-full opacity-0 group-hover/progress:opacity-100 transition-opacity z-40 pointer-events-none"
+                                style={{
+                                    left: duration > 0 ? `calc(${(currentTime / duration) * 100}% - 4px)` : '-4px'
+                                }}
                             />
                         </div>
                         <div className="flex justify-between text-[10px] text-zinc-600 font-mono tabular-nums leading-none tracking-tight">
