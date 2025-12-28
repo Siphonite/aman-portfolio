@@ -60,7 +60,7 @@ export default function MusicPlayer() {
                     updateHourlyTrack();
 
                     // Check for hour change every minute
-                    const intervalId = setInterval(() => {
+                    setInterval(() => {
                         const now = new Date();
                         if (now.getMinutes() === 0 && now.getSeconds() < 10) {
                             updateHourlyTrack();
