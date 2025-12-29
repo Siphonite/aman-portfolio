@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import Layout from "./layout/layout";
 import OnekoCat from "./components/OnekoCat";
 
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <>
+      <Analytics />
       <OnekoCat />
       {currentPage === "resume" ? (
         <>
